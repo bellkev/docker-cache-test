@@ -8,3 +8,8 @@ dependencies:
 test:
   override:
     - docker run bellkev/docker-cache-test:$CIRCLE_SHA1
+deployment:
+  branch: master
+  commands:
+    - docker login -u $DOCKER_USER -e $DOCKER_EMAIL -p $DOCKER_PASS
+    - docker push bellkev/docker-cache-test:$CIRCLE_SHA1
