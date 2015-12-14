@@ -7,7 +7,7 @@ dependencies:
     - docker build -t bellkev/docker-cache-test:$CIRCLE_SHA1-$CIRCLE_BUILD_NUM .
 test:
   override:
-    - docker run bellkev/docker-cache-test:$CIRCLE_SHA1
+    - docker run bellkev/docker-cache-test:$CIRCLE_SHA1-$CIRCLE_BUILD_NUM
 deployment:
   master:
     branch: master
