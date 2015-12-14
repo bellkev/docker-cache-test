@@ -3,7 +3,7 @@ machine:
     - docker
 dependencies:
   override:
-    - dd if=/dev/urandom of=file bs=1M count=100
+    - dd if=/dev/urandom of=file bs=1M count=1000
     - docker build -t bellkev/docker-cache-test:$CIRCLE_SHA1-$CIRCLE_BUILD_NUM .
 test:
   override:
