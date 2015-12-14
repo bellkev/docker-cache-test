@@ -1,0 +1,9 @@
+services:
+  - docker
+dependencies:
+  override:
+    - dd if=/dev/urandom of=file bs=1M count=10
+    - docker build -t bellkev/docker-cache-test:$CIRCLE_SHA1 .
+test:
+  override:
+    - docker run bellkev/docker-cache-test:$CIRCLE_SHA1
