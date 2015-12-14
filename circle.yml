@@ -3,8 +3,8 @@ machine:
     - docker
 dependencies:
   override:
-    - dd if=/dev/urandom of=file bs=1M count=10
-    - docker build -t bellkev/docker-cache-test:$CIRCLE_SHA1 .
+    - dd if=/dev/urandom of=file bs=1M count=100
+    - docker build -t bellkev/docker-cache-test:$CIRCLE_SHA1-$CIRCLE_BUILD_NUM .
 test:
   override:
     - docker run bellkev/docker-cache-test:$CIRCLE_SHA1
@@ -13,4 +13,4 @@ deployment:
     branch: master
     commands:
       - docker login -u $DOCKER_USER -e $DOCKER_EMAIL -p $DOCKER_PASS
-      - docker push bellkev/docker-cache-test:$CIRCLE_SHA1
+      - docker push bellkev/docker-cache-test:$CIRCLE_SHA1-$CIRCLE_BUILD_NUM
